@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import './index.css';
+import Employee from './component/Employee';
+import {v4 as uuidv4} from 'uuid';
+import AddEmployee from './component/AddEmployee';
+import EditEmployee from './component/EditEmployee';
+import Header from './component/Header';
+import Employees from './pages/Employess';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import Customers from './pages/Customers';
+import Dictionary from './pages/Dictionary';
+import Definition from './pages/Definition';
+import NotFound from './component/404';
 
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Header>
+        <Routes>
+          <Route path='/employees' element={<Employees/>} />
+          <Route path='/customers' element={<Customers/>} />  
+          <Route 
+          path='/dictionary/:search' 
+          element={<Definition/>}/>
+          <Route path='/dictionary' element={<Dictionary/>}/>
+          <Route path='/404' element={<NotFound/>}/>
+        </Routes>
+      </Header>
+    </BrowserRouter>
   );
+
 }
 
 export default App;
